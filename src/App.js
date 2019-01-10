@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ChatServerComponent from "./component/chat_server_component";
+import Home from './component/home';
+import './css/chatbox.css';
+import './css/bulma.css';
+
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+        <Router>
+        <div>
+          <div className="sidebar">
+            <span className="active">CHAT BOX</span>
+              <Link to="/">Home</Link>
+              <Link to="/server/">Server</Link>
+              <Link to={"/client/"}>Client</Link>
+          </div>
+        <div>
+            <Route exact path={"/"} component={Home}/>
+            <Route path={"/server/"} component={ChatServerComponent} />
+        </div>
+        </div>
+        </Router>
     );
   }
 }
